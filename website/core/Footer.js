@@ -29,7 +29,7 @@ class Footer extends React.Component {
               />
             )}
           </a>
-          <div>
+          {/* <div>
             <h5>Docs</h5>
             <a href={this.docUrl('doc1.html')}>
               Getting Started (or other categories)
@@ -38,8 +38,8 @@ class Footer extends React.Component {
             <a href={this.docUrl('doc3.html')}>
               API Reference (or other categories)
             </a>
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <h5>Community</h5>
             <a href={`${this.props.config.baseUrl}users`}>User Showcase</a>
             <a
@@ -55,11 +55,11 @@ class Footer extends React.Component {
               rel="noreferrer noopener">
               Twitter
             </a>
-          </div>
+          </div> */}
           <div>
             <h5>More</h5>
             <a href={`${this.props.config.baseUrl}blog`}>Blog</a>
-            <a href="https://github.com/">GitHub</a>
+            <a href="https://github.com/codehub-create">GitHub</a>
             <a
               className="github-button"
               href={this.props.config.repoUrl}
@@ -95,7 +95,7 @@ class Footer extends React.Component {
           </div>
         </section>
 
-        <a
+        {/* <a
           href="https://opensource.facebook.com/"
           target="_blank"
           rel="noreferrer noopener"
@@ -106,7 +106,7 @@ class Footer extends React.Component {
             width="170"
             height="45"
           />
-        </a>
+        </a> */}
         <section className="copyright">{this.props.config.copyright}</section>
       </footer>
     );
