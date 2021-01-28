@@ -1,29 +1,88 @@
 ---
 id: doc1
-title: Latin-ish
-sidebar_label: Example Page
+title: Development workflow
+sidebar_label: Development workflow
 ---
 
-Check the [documentation](https://docusaurus.io) for how to use Docusaurus.
+## Before you start
+You're going to be using git a lot so make sure that: 
+1. [git](https://git-scm.com/) is installed on your host
+1. You have a **solid understanding on what [git is](https://en.wikipedia.org/wiki/Git)** and you've understood 
+commits, remote/local repositories, and [how to write good commit messages](#commiting-your-work). If you're not certain, visit 
+[Github's resources](https://try.github.io/) and revisit basic git concepts and commands.
+1. You are acquainted with the [GitFlow workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) and [Feature branches](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow).
+Check this [interactive tutorial](https://learngitbranching.js.org/) on branching for some warm-up.
 
-## Lorem
+## Starting your task
+Initiating a task means that by now, a [github/jira/whatever issue](https://guides.github.com/features/issues/) has been created
+on a [project board](https://docs.github.com/en/github/managing-your-work-on-github/about-project-boards)
+and that it was assigned to you. 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum massa eget nulla aliquet sagittis. Proin odio tortor, vulputate ut odio in, ultrices ultricies augue. Cras ornare ultrices lorem malesuada iaculis. Etiam sit amet libero tempor, pulvinar mauris sed, sollicitudin sapien.
+### Set task to `In progress`
+Issues start at a `Todo` state and which indicates that no work has been done yet.
+Move the issue to the `In progress` state and indicate that you've started working on it.
 
-## Mauris In Code
+### Create a new branch 
+As our branching model dictates, there are two branches of significance: 
+- `master` branch (or `main` [as of quite recently](https://github.com/github/renaming)): holds all production releases.
+This branch **receives no commits directly** and **branches created from it, are necessary only for bug fixes**.
+- `development`: the main development branches. All feature branches are created from it and all feature branches are 
+merged into it.
 
+Create a new branch from the main development branch (a.k.a. the `develop` branch) using the following format:
 ```
-Mauris vestibulum ullamcorper nibh, ut semper purus pulvinar ut. Donec volutpat orci sit amet mauris malesuada, non pulvinar augue aliquam. Vestibulum ultricies at urna ut suscipit. Morbi iaculis, erat at imperdiet semper, ipsum nulla sodales erat, eget tincidunt justo dui quis justo. Pellentesque dictum bibendum diam at aliquet. Sed pulvinar, dolor quis finibus ornare, eros odio facilisis erat, eu rhoncus nunc dui sed ex. Nunc gravida dui massa, sed ornare arcu tincidunt sit amet. Maecenas efficitur sapien neque, a laoreet libero feugiat ut.
+{source branch}_{feature's short name/task description or the issue number}
+
+Example branch name using issue number:
+"development_issue-134"
+
+Example branch name with issue/task description:
+"development_modify_home_screen"
 ```
 
-## Nulla
+## During development
+This is where coding starts. Make sure that you have developed a **solid understanding** of both the **technical aspect**
+of the task as well as its **business impact** (or value). Ask your team openly on the project's slack channel or ask a senior
+project member for guidance when issues arise. Prefer **posting questions to public channels instead of PMs** (Private messages) as this
+will _make information widely available to the team_ and allow others to take benefit from it. 
 
-Nulla facilisi. Maecenas sodales nec purus eget posuere. Sed sapien quam, pretium a risus in, porttitor dapibus erat. Sed sit amet fringilla ipsum, eget iaculis augue. Integer sollicitudin tortor quis ultricies aliquam. Suspendisse fringilla nunc in tellus cursus, at placerat tellus scelerisque. Sed tempus elit a sollicitudin rhoncus. Nulla facilisi. Morbi nec dolor dolor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras et aliquet lectus. Pellentesque sit amet eros nisi. Quisque ac sapien in sapien congue accumsan. Nullam in posuere ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin lacinia leo a nibh fringilla pharetra.
+## Commiting your work
+Once you are confident that the implementation is finished you can commit your work.
+Follow the commit checklist:
+1. View your unstaged files one by one and:
+    - Remove trailing spaces and unnecessary newlines
+    - Get rid of commented out code
+    - Undo changes that are irrelevant
+2. Stage changes and review your files. Study the diff one more time.
+3. Write a **good commit message**: 
+    - Avoid long lines (50-60 characters per line)
+    - Use [imperative mood](https://chris.beams.io/posts/git-commit/#imperative)
+    - Be descriptive of what you did an _how_. Provide context information.
+    - Provide relations to issue/task number (e.g. "_#55 Fix typo_")
 
-## Orci
+    _Examples_
 
-Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin venenatis lectus dui, vel ultrices ante bibendum hendrerit. Aenean egestas feugiat dui id hendrerit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur in tellus laoreet, eleifend nunc id, viverra leo. Proin vulputate non dolor vel vulputate. Curabitur pretium lobortis felis, sit amet finibus lorem suscipit ut. Sed non mollis risus. Duis sagittis, mi in euismod tincidunt, nunc mauris vestibulum urna, at euismod est elit quis erat. Phasellus accumsan vitae neque eu placerat. In elementum arcu nec tellus imperdiet, eget maximus nulla sodales. Curabitur eu sapien eget nisl sodales fermentum.
+    Short commit message:
+    ```
+    #155 Remove Customer.VatNumber property
+    ```
 
-## Phasellus
+    Long commit message:
+    ```
+    #155 Remove VatNumber property
 
-Phasellus pulvinar ex id commodo imperdiet. Praesent odio nibh, sollicitudin sit amet faucibus id, placerat at metus. Donec vitae eros vitae tortor hendrerit finibus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque vitae purus dolor. Duis suscipit ac nulla et finibus. Phasellus ac sem sed dui dictum gravida. Phasellus eleifend vestibulum facilisis. Integer pharetra nec enim vitae mattis. Duis auctor, lectus quis condimentum bibendum, nunc dolor aliquam massa, id bibendum orci velit quis magna. Ut volutpat nulla nunc, sed interdum magna condimentum non. Sed urna metus, scelerisque vitae consectetur a, feugiat quis magna. Donec dignissim ornare nisl, eget tempor risus malesuada quis.
+    - Update tests
+    - Drop index from Customer.VatNumber table
+    ```
+
+    > A diff will tell you what changed, but only the commit message can properly tell you why
+## Submit for review
+1. Open a [Pull Request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)
+and enable other team members to review and approve the implementation. Collective work leads to 
+better results, so, feedback from the Team should be taken into account and may lead to 
+code changes or re-writes.
+2. Once the PR is approved, then **merge your feature branch into development**,
+and delete the feature branch from the `remote`.
+3. Move the related issue to `Done` state.
+4. Pour some coffee and start from the beginning.
+

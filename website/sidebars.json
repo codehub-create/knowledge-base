@@ -1,6 +1,8 @@
 {
   "docs": {
-    "Development flow": ["doc1"],
+    "Workflows": [
+      "doc1"
+    ],
     "Guides": ["angular-gitflow"]
   },
   "docs-other": {
