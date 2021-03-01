@@ -1,7 +1,6 @@
 ---
 id: doc1
 title: Development workflow
-sidebar_label: Development workflow
 ---
 
 ## Before you start
@@ -40,6 +39,8 @@ Example branch name using issue number:
 Example branch name with issue/task description:
 "development_modify_home_screen"
 ```
+> Suggestion: Use lower case for branch names
+
 
 ## During development
 This is where coding starts. Make sure that you have developed a **solid understanding** of both the **technical aspect**
