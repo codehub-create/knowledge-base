@@ -1,6 +1,6 @@
 # C# Coding Conventions
 
-#### Our C# coding convetions are inspired from  [C# at Google Style Guide](https://google.github.io/styleguide/csharp-style.html) .
+#### Our C# coding conventions are inspired from  [C# at Google Style Guide](https://google.github.io/styleguide/csharp-style.html) .
 
 # Formatting rules
 
