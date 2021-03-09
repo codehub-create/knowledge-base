@@ -130,7 +130,7 @@ namespace ProjectName.Services
 # C# coding guidelines
 
 ### Using Async 
-
+- We encourage the use of `Async` method. 
 - All `async` methods must have `Async` suffix.  
 
 ***Example***
