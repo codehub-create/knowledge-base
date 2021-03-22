@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>C# Coding Conventions · Knowledge Base</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Our C# coding conventions are inspired from  [Google&#x27;s Style Guide](https://google.github.io/styleguide/csharp-style.html),"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="C# Coding Conventions · Knowledge Base"/><meta property="og:type" content="website"/><meta property="og:url" content="https://github.com/codehub-create/knowledge-base/"/><meta property="og:description" content="Our C# coding conventions are inspired from  [Google&#x27;s Style Guide](https://google.github.io/styleguide/csharp-style.html),"/><meta property="og:image" content="https://github.com/codehub-create/knowledge-base/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://github.com/codehub-create/knowledge-base/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/knowledge-base/img/CodeHub2.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/knowledge-base/js/scrollSpy.js"></script><link rel="stylesheet" href="/knowledge-base/css/main.css"/><script src="/knowledge-base/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/knowledge-base/"><img class="logo" src="/knowledge-base/img/CodeHub2.png" alt="Knowledge Base"/><h2 class="headerTitleWithLogo">Knowledge Base</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/knowledge-base/docs/doc1" target="_self">Docs</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Working at Code.Create</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Working at Code.Create<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/knowledge-base/docs/doc1">Development workflow</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/knowledge-base/docs/csharp-coding-conventions">C# Coding Conventions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Guides<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/knowledge-base/docs/angular-gitflow">How to publish an Angular project</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">C# Coding Conventions</h1></header><article><div><span><p>Our C# coding conventions are inspired from  <a href="https://google.github.io/styleguide/csharp-style.html">Google's Style Guide</a>,
+and from the <a href="https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/naming-guidelines">.NET Framework Design Guidelines</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="overview--coding-approach"></a><a href="#overview--coding-approach" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview &amp; Coding approach</h2>
+<ul>
+<li>Keep lines short and not expand beyond the 90th column. Prefer
+short sentences as you would when writing free text.</li>
+<li>Respect your surroundings: make sure that you've established a good
+understanding of a project's conventions and follow them.</li>
+<li>Be &quot;conservative&quot; before introducing new technologies (libraries, frameworks etc) to a project.
+Be certain that it will further help development and achieve consent before you introduce them.</li>
+<li>Pierce through the abstraction layer of the things you use. Try and understand how your
+tools (libraries, frameworks etc) work.</li>
+<li>Pay attention when naming things. Be clear and concise.</li>
+<li>Examine your changes carefully before <a href="doc1#commiting-your-work">submitting your code</a> (commit).</li>
+<li>Always code as if your code is meant to be read by someone else.</li>
+</ul>
+<blockquote>
+<p><em>Programs are meant to be read by humans and only incidentally for computers to execute</em></p>
+<p><em>Donald Knuth</em></p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="naming"></a><a href="#naming" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Naming</h2>
+<ul>
+<li><p>Use <strong>PascalCase</strong> for names of classes, methods, enumerations, public fields, public properties, namespaces.</p></li>
+<li><p>Names of interfaces start with <code>I</code>, <em>e.g.</em> <code>IInterface</code>.</p></li>
+<li><p>Use <strong>camelCase</strong> for names of local variables and function parameters.</p></li>
+<li><p>Prefix private class members/fields with <em>underscore</em>. E.g.
+<code>private bool _myPrivateField</code>.</p></li>
+<li><p>Use <strong>PascalCase</strong> for Filenames and directory names. E.g. <code>MyFile.cs</code>.</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="namespaces"></a><a href="#namespaces" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Namespaces</h3>
+<ul>
+<li>Namespaces should be no more than 2 levels deep.</li>
+<li>Don't force file/folder layout to match namespaces.</li>
+<li>Top-level namespace names must be globally unique and recognizable.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="new-lines"></a><a href="#new-lines" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>New lines</h2>
+<p>Use a new line character before opening curly brackets (<code>{}</code>) only for
+classes, interfaces, structs &amp; function bodies.
+Do not add new lines before opening brackets to <code>if/else</code>, <code>for/foreach/while</code>, class instantiations or anonymous types declarations.</p>
+<h2><a class="anchor" aria-hidden="true" id="whitespace"></a><a href="#whitespace" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Whitespace</h2>
+<ul>
+<li>Add space after commas.</li>
+<li>Add a space character between:
+<ol>
+<li>a unary operator and its operand.</li>
+<li>the operator and each operand of all other operators.</li>
+</ol></li>
+<li>Do <strong>not add</strong> spaces after an opening parenthesis or before a closing parenthesis.</li>
+<li>Line continuations are indented 4 spaces.</li>
+<li><strong>No</strong> trailing spaces.</li>
+</ul>
+<p><em>Example</em></p>
+<pre><code class="hljs css language-csharp"><span class="hljs-comment">// Bad</span>
+<span class="hljs-keyword">using</span> System;
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">projectName.src.domain.Services</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Projectservice</span> : <span class="hljs-title">iProjectService</span> 
+    {
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> dBContext DBContext;
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Projectservice</span>(<span class="hljs-params">dBContext dbcontext</span>)</span>
+        {
+            DBContext = dbcontext;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">getStatus</span>(<span class="hljs-params"><span class="hljs-keyword">bool</span> status</span>)</span> { 
+       
+            <span class="hljs-keyword">if</span>(status == <span class="hljs-literal">null</span>)
+            {
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ArgumentNullException(
+                    <span class="hljs-keyword">nameof</span>(status)
+                    );
+            }
+        }
+    }
+}
+</code></pre>
+<pre><code class="hljs css language-C#"><span class="hljs-comment">// Good</span>
+<span class="hljs-keyword">using</span> System;
+
+<span class="hljs-comment">// Keep XML comments as a visual aid, clearly separating</span>
+<span class="hljs-comment">// members between one another (suggestion).</span>
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">ProjectName.Services</span>
+{
+    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;summary&gt;</span></span>
+    <span class="hljs-comment"><span class="hljs-doctag">///</span> </span>
+    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;/summary&gt;</span></span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ProjectService</span> : <span class="hljs-title">IProjectService</span>
+    {
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;summary&gt;</span></span>
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> </span>
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;/summary&gt;</span></span>
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> DbContext _dbContext;
+
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;summary&gt;</span></span>
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> </span>
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;/summary&gt;</span></span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">bool</span> Status { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;summary&gt;</span></span>
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> </span>
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;/summary&gt;</span></span>
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">bool</span> _active { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;summary&gt;</span></span>
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> </span>
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;/summary&gt;</span></span>
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;param name="dbContext"&gt;</span><span class="hljs-doctag">&lt;/param&gt;</span></span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ProjectService</span>(<span class="hljs-params">
+            DbContext dbContext</span>)</span>
+        {
+            _dbContext = dbContext;
+        }
+
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;summary&gt;</span></span>
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> </span>
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;/summary&gt;</span></span>
+        <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;returns&gt;</span><span class="hljs-doctag">&lt;/returns&gt;</span></span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Save</span>(<span class="hljs-params"></span>)</span>
+        { 
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-keyword">if</span> (_dbContext.SaveChanges() &gt; <span class="hljs-number">0</span> ) {
+                    <span class="hljs-comment">// no new lines to `if`s opening bracket</span>
+                } <span class="hljs-keyword">else</span> {
+
+                }
+            } <span class="hljs-keyword">catch</span>(Exception) {
+                <span class="hljs-comment">// log</span>
+            }
+        }
+    }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="async"></a><a href="#async" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Async</h3>
+<ul>
+<li>Prefer <code>async</code> methods where possible.</li>
+<li>Use <code>async</code> suffix to methods that return <code>Task</code>.</li>
+</ul>
+<p><em>Example</em></p>
+<pre><code class="hljs css language-csharp"><span class="hljs-comment">// Bad</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">SendEmail</span>(<span class="hljs-params">Options options</span>)</span>;
+</code></pre>
+<pre><code class="hljs css language-csharp"><span class="hljs-comment">// Good</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">SendEmailAsync</span>(<span class="hljs-params">Options options</span>)</span>;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="use-var"></a><a href="#use-var" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Use <code>var</code></h3>
+<ul>
+<li>Use <code>var</code> instead of declaring the full type's name for simplicity.</li>
+</ul>
+<p><em>Example</em></p>
+<pre><code class="hljs css language-csharp"><span class="hljs-comment">// Bad</span>
+List&lt;Customer&gt; customers = <span class="hljs-keyword">new</span> List&lt;Customer&gt;();
+<span class="hljs-keyword">bool</span> customerExists = <span class="hljs-literal">true</span>;
+</code></pre>
+<pre><code class="hljs css language-csharp"><span class="hljs-comment">// Good</span>
+<span class="hljs-keyword">var</span> customers = <span class="hljs-keyword">new</span> List&lt;Customer&gt;();
+<span class="hljs-keyword">var</span> customerExists = <span class="hljs-literal">true</span>;
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2021-3-22</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/knowledge-base/docs/doc1"><span class="arrow-prev">← </span><span>Development workflow</span></a><a class="docs-next button" href="/knowledge-base/docs/angular-gitflow"><span>How to publish an Angular project</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#overview--coding-approach">Overview &amp; Coding approach</a></li><li><a href="#naming">Naming</a><ul class="toc-headings"><li><a href="#namespaces">Namespaces</a></li></ul></li><li><a href="#new-lines">New lines</a></li><li><a href="#whitespace">Whitespace</a><ul class="toc-headings"><li><a href="#async">Async</a></li><li><a href="#use-var">Use <code>var</code></a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/knowledge-base/" class="nav-home"></a><div><h5>More</h5><a href="/knowledge-base/blog">Blog</a><a href="https://github.com/codehub-create">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2021 Code.Hub Create</section></footer></div></body></html>
