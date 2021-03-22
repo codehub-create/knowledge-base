@@ -2,6 +2,11 @@
 This repository contains resources (links, articles, guides etc) for all knowledge acquired within 
 the development's team day-to-day work.
 
+## Running the app
+To run the app: 
+1. Go to `website` folder where `package.json` is located.
+2. Run `npm start`.
+
 ## Publishing to Github pages
 Publishing to Github pages uses `releases` branch `docs/` folder.
 To publish a new release, `docs/` folder must be populated with the `build` command output.
