@@ -1,7 +1,8 @@
 {
   "docs": {
     "Working at Code.Create": [
-      "doc1"
+      "doc1", 
+      "csharp-coding-conventions"
     ],
     "Guides": ["angular-gitflow"]
   },
