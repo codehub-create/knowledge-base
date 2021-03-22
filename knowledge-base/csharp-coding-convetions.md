@@ -141,7 +141,7 @@ namespace ProjectName.Services
 }
 ```
 
-### Async
+## Async
 - Prefer `async` methods where possible.
 - Use `async` suffix to methods that return `Task`.
 
@@ -155,7 +155,7 @@ public async Task SendEmail(Options options);
 public async Task SendEmailAsync(Options options);
 ```
 
-### Use `var`
+## Use `var`
 
 - Use `var` instead of declaring the full type's name for simplicity.
 
